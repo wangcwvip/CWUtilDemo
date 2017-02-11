@@ -8,6 +8,8 @@
 
 #import "CWDemoViewController.h"
 
+#import "CWUtils+Encoding.h"
+
 @interface CWDemoViewController ()
 
 @end
@@ -16,6 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *md5Str = [CWUtils encodeMD5WithString:@"md5,fk u"];
+    NSString *hexStr = [CWUtils encodeHexWithData:[@"BBDDEE" dataUsingEncoding:NSUTF8StringEncoding] upperCase:YES];
+    NSString *shaStr = [CWUtils encodeSHA512WithString:@"bbbcddeff"];
+    
+    NSLog(@"MD5：%@", md5Str);
+    NSLog(@"HEX：%@", hexStr);
+    NSLog(@"SHA：%@", shaStr);
+    
     // Do any additional setup after loading the view.
 }
 

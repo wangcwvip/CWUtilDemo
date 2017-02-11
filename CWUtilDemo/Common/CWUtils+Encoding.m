@@ -11,18 +11,20 @@
 
 @implementation CWUtils (Encoding)
 
-+ (NSString *)encodeMD5WithValue:(NSString *)value
+#pragma mark - MD5
+
++ (NSString *)encodeMD5WithString:(NSString *)string
 {
     NSString *md5Str = @"";
 
-    const char *cValue = [value UTF8String];
-    if (cValue == NULL)
+    const char *cString = [string UTF8String];
+    if (cString == NULL)
     {
-        cValue = "";
+        cString = "";
     }
     
     unsigned char r[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(cValue, (CC_LONG)strlen(cValue), r);
+    CC_MD5(cString, (CC_LONG)strlen(cString), r);
     for (NSUInteger index = 0; index < 16; ++index)
     {
         md5Str = [md5Str stringByAppendingFormat:@"%02x", r[index]];
@@ -30,6 +32,8 @@
     
     return md5Str;
 }
+
+#pragma mark - Hex
 
 const static char UP_HEXCHAR[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
 const static char LO_HEXCHAR[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
@@ -55,10 +59,12 @@ const static char LO_HEXCHAR[] = {'0','1','2','3','4','5','6','7','8','9','a','b
     return hexStr;
 }
 
-+ (NSString *)encodeSHA512WithValue:(NSString *)value
+#pragma mark - SHA
+
++ (NSString *)encodeSHA512WithString:(NSString *)string
 {
-    const char *cValue = [value cStringUsingEncoding:NSUTF8StringEncoding];
-    NSData *data = [NSData dataWithBytes:cValue length:value.length];
+    const char *cString = [string cStringUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [NSData dataWithBytes:cString length:string.length];
     uint8_t digest[CC_SHA512_DIGEST_LENGTH];
     CC_SHA512(data.bytes, (CC_LONG)data.length, digest);
     
@@ -70,5 +76,198 @@ const static char LO_HEXCHAR[] = {'0','1','2','3','4','5','6','7','8','9','a','b
     
     return output;
 }
+
+#pragma mark - Base64
+
+#ifdef __IPHONE_7_0
+
++ (NSString *)encodeBase64WithString:(NSString *)string
+{
+    NSData *preData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    return [preData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
++ (NSString *)encodeBase64WithData:(NSData *)data
+{
+    return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
++ (NSData *)decodeBase64WithString:(NSString *)string
+{
+    return [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+}
+
+#else
+
+static const char _base64EncodingTable[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+static const short _base64DecodingTable[256] = {
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -1, -2, -1, -1, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -1, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 62, -2, -2, -2, 63,
+    52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -2, -2, -2, -2, -2, -2,
+    -2, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+    15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -2, -2, -2, -2, -2,
+    -2, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2,
+    -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2
+};
+
++ (NSString *)encodeBase64WithString:(NSString *)string
+{
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+    return [CWUtils encodeBase64WithData:data];
+}
+
++ (NSString *)encodeBase64WithData:(NSData *)data
+{
+    const unsigned char * objRawData = [data bytes];
+    char * objPointer;
+    char * strResult;
+    
+    // Get the Raw Data length and ensure we actually have data
+    int intLength = (int)[data length];
+    if (intLength == 0)
+    {
+        return nil;
+    }
+    
+    // Setup the String-based Result placeholder and pointer within that placeholder
+    strResult = (char *)calloc(((intLength + 2) / 3) * 4, sizeof(char));
+    objPointer = strResult;
+    
+    // Iterate through everything
+    while (intLength > 2)
+    { // keep going until we have less than 24 bits
+        *objPointer++ = _base64EncodingTable[objRawData[0] >> 2];
+        *objPointer++ = _base64EncodingTable[((objRawData[0] & 0x03) << 4) + (objRawData[1] >> 4)];
+        *objPointer++ = _base64EncodingTable[((objRawData[1] & 0x0f) << 2) + (objRawData[2] >> 6)];
+        *objPointer++ = _base64EncodingTable[objRawData[2] & 0x3f];
+        
+        // we just handled 3 octets (24 bits) of data
+        objRawData += 3;
+        intLength -= 3;
+    }
+    
+    // now deal with the tail end of things
+    if (intLength != 0)
+    {
+        *objPointer++ = _base64EncodingTable[objRawData[0] >> 2];
+        if (intLength > 1)
+        {
+            *objPointer++ = _base64EncodingTable[((objRawData[0] & 0x03) << 4) + (objRawData[1] >> 4)];
+            *objPointer++ = _base64EncodingTable[(objRawData[1] & 0x0f) << 2];
+            *objPointer++ = '=';
+        }
+        else
+        {
+            *objPointer++ = _base64EncodingTable[(objRawData[0] & 0x03) << 4];
+            *objPointer++ = '=';
+            *objPointer++ = '=';
+        }
+    }
+    
+    // Terminate the string-based result
+    *objPointer = '\0';
+    
+    // Return the results as an NSString object
+    return [NSString stringWithCString:strResult encoding:NSASCIIStringEncoding];
+}
+
++ (NSData *)decodeBase64WithString:(NSString *)string
+{
+    const char * objPointer = [string cStringUsingEncoding:NSASCIIStringEncoding];
+    int intLength = (int)strlen(objPointer);
+    int intCurrent;
+    int i = 0, j = 0, k;
+    
+    unsigned char * objResult;
+    objResult = calloc(intLength, sizeof(char));
+    
+    // Run through the whole string, converting as we go
+    while (((intCurrent = *objPointer++) != '\0') && (intLength-- > 0))
+    {
+        if (intCurrent == '=')
+        {
+            if (*objPointer != '=' && ((i % 4) == 1))
+            {// || (intLength > 0)) {
+                // the padding character is invalid at this point -- so this entire string is invalid
+                free(objResult);
+                return nil;
+            }
+            continue;
+        }
+        
+        intCurrent = _base64DecodingTable[intCurrent];
+        if (intCurrent == -1)
+        {
+            // we're at a whitespace -- simply skip over
+            continue;
+        }
+        else if (intCurrent == -2)
+        {
+            // we're at an invalid character
+            free(objResult);
+            return nil;
+        }
+        
+        switch (i % 4)
+        {
+            case 0:
+                objResult[j] = intCurrent << 2;
+                break;
+                
+            case 1:
+                objResult[j++] |= intCurrent >> 4;
+                objResult[j] = (intCurrent & 0x0f) << 4;
+                break;
+                
+            case 2:
+                objResult[j++] |= intCurrent >>2;
+                objResult[j] = (intCurrent & 0x03) << 6;
+                break;
+                
+            case 3:
+                objResult[j++] |= intCurrent;
+                break;
+        }
+        i++;
+    }
+    
+    // mop things up if we ended on a boundary
+    k = j;
+    if (intCurrent == '=')
+    {
+        switch (i % 4)
+        {
+            case 1:
+                // Invalid state
+                free(objResult);
+                return nil;
+                
+            case 2:
+                k++;
+                // flow through
+            case 3:
+                objResult[k] = 0;
+        }
+    }
+    
+    // Cleanup and setup the return NSData
+    NSData * objData = [[NSData alloc] initWithBytes:objResult length:j];
+    
+    free(objResult);
+    
+    return objData;
+} 
+
+#endif
 
 @end

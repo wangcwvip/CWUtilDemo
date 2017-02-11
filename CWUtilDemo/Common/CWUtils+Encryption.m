@@ -13,7 +13,7 @@
 
 @implementation CWUtils (Encryption)
 
-#pragma mark AES256
+#pragma mark AES
 
 + (NSData *)AES256EncryptData:(NSData *)data
 {
