@@ -15,6 +15,8 @@
 		2D513B381E4EE16E00E437F6 /* CWDemoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B371E4EE16E00E437F6 /* CWDemoNavigationController.m */; };
 		2D513B3C1E4EE39800E437F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D513B3A1E4EE39800E437F6 /* Assets.xcassets */; };
 		2D513B471E4F112800E437F6 /* CWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B461E4F112800E437F6 /* CWUtils.m */; };
+		2D513B4A1E4F12C200E437F6 /* CWUtils+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B491E4F12C200E437F6 /* CWUtils+Encryption.m */; };
+		2D513B4D1E4F12EE00E437F6 /* CWUtils+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B4C1E4F12EE00E437F6 /* CWUtils+Encoding.m */; };
 		2D6B2F2F1E4EDB0B00F79560 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B2F2E1E4EDB0B00F79560 /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,10 @@
 		2D513B3E1E4EE4D900E437F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D513B451E4F112800E437F6 /* CWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWUtils.h; sourceTree = "<group>"; };
 		2D513B461E4F112800E437F6 /* CWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWUtils.m; sourceTree = "<group>"; };
+		2D513B481E4F12C200E437F6 /* CWUtils+Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CWUtils+Encryption.h"; sourceTree = "<group>"; };
+		2D513B491E4F12C200E437F6 /* CWUtils+Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CWUtils+Encryption.m"; sourceTree = "<group>"; };
+		2D513B4B1E4F12EE00E437F6 /* CWUtils+Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CWUtils+Encoding.h"; sourceTree = "<group>"; };
+		2D513B4C1E4F12EE00E437F6 /* CWUtils+Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CWUtils+Encoding.m"; sourceTree = "<group>"; };
 		2D6B2F2A1E4EDB0B00F79560 /* CWUtilsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWUtilsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6B2F2E1E4EDB0B00F79560 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +87,10 @@
 			children = (
 				2D513B451E4F112800E437F6 /* CWUtils.h */,
 				2D513B461E4F112800E437F6 /* CWUtils.m */,
+				2D513B481E4F12C200E437F6 /* CWUtils+Encryption.h */,
+				2D513B491E4F12C200E437F6 /* CWUtils+Encryption.m */,
+				2D513B4B1E4F12EE00E437F6 /* CWUtils+Encoding.h */,
+				2D513B4C1E4F12EE00E437F6 /* CWUtils+Encoding.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -112,8 +122,8 @@
 		2D6B2F2C1E4EDB0B00F79560 /* CWUtilDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2D513B351E4EE0D100E437F6 /* Common */,
 				2D513B2E1E4EE06900E437F6 /* App */,
+				2D513B351E4EE0D100E437F6 /* Common */,
 				2D6B2F531E4EDD0100F79560 /* Base */,
 				2D6B2F2D1E4EDB0B00F79560 /* Supporting Files */,
 				2D513B391E4EE31A00E437F6 /* Resource */,
@@ -210,10 +220,12 @@
 				2D513B2B1E4EE02200E437F6 /* CWBaseNavigationController.m in Sources */,
 				2D513B381E4EE16E00E437F6 /* CWDemoNavigationController.m in Sources */,
 				2D513B341E4EE0A900E437F6 /* CWDemoViewController.m in Sources */,
+				2D513B4A1E4F12C200E437F6 /* CWUtils+Encryption.m in Sources */,
 				2D513B2C1E4EE02200E437F6 /* CWBaseTabBarController.m in Sources */,
 				2D6B2F2F1E4EDB0B00F79560 /* main.m in Sources */,
 				2D513B2D1E4EE02200E437F6 /* CWBaseViewController.m in Sources */,
 				2D513B331E4EE0A900E437F6 /* AppDelegate.m in Sources */,
+				2D513B4D1E4F12EE00E437F6 /* CWUtils+Encoding.m in Sources */,
 				2D513B471E4F112800E437F6 /* CWUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
