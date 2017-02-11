@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CWUtilDemo.xcodeproj">
+      location = "self:/Users/wangcw/Workspace/iOS/iSource/CWUtilsDemo/CWUtilsDemo.xcodeproj">
    </FileRef>
 </Workspace>

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D6B2F291E4EDB0B00F79560"
-               BuildableName = "CWUtilDemo.app"
-               BlueprintName = "CWUtilDemo"
-               ReferencedContainer = "container:CWUtilDemo.xcodeproj">
+               BuildableName = "CWUtilsDemo.app"
+               BlueprintName = "CWUtilsDemo"
+               ReferencedContainer = "container:CWUtilsDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D6B2F291E4EDB0B00F79560"
-            BuildableName = "CWUtilDemo.app"
-            BlueprintName = "CWUtilDemo"
-            ReferencedContainer = "container:CWUtilDemo.xcodeproj">
+            BuildableName = "CWUtilsDemo.app"
+            BlueprintName = "CWUtilsDemo"
+            ReferencedContainer = "container:CWUtilsDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D6B2F291E4EDB0B00F79560"
-            BuildableName = "CWUtilDemo.app"
-            BlueprintName = "CWUtilDemo"
-            ReferencedContainer = "container:CWUtilDemo.xcodeproj">
+            BuildableName = "CWUtilsDemo.app"
+            BlueprintName = "CWUtilsDemo"
+            ReferencedContainer = "container:CWUtilsDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D6B2F291E4EDB0B00F79560"
-            BuildableName = "CWUtilDemo.app"
-            BlueprintName = "CWUtilDemo"
-            ReferencedContainer = "container:CWUtilDemo.xcodeproj">
+            BuildableName = "CWUtilsDemo.app"
+            BlueprintName = "CWUtilsDemo"
+            ReferencedContainer = "container:CWUtilsDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

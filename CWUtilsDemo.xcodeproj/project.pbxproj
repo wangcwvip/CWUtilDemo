@@ -14,6 +14,7 @@
 		2D513B341E4EE0A900E437F6 /* CWDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B321E4EE0A900E437F6 /* CWDemoViewController.m */; };
 		2D513B381E4EE16E00E437F6 /* CWDemoNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B371E4EE16E00E437F6 /* CWDemoNavigationController.m */; };
 		2D513B3C1E4EE39800E437F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D513B3A1E4EE39800E437F6 /* Assets.xcassets */; };
+		2D513B471E4F112800E437F6 /* CWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D513B461E4F112800E437F6 /* CWUtils.m */; };
 		2D6B2F2F1E4EDB0B00F79560 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B2F2E1E4EDB0B00F79560 /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,9 @@
 		2D513B371E4EE16E00E437F6 /* CWDemoNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDemoNavigationController.m; sourceTree = "<group>"; };
 		2D513B3A1E4EE39800E437F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D513B3E1E4EE4D900E437F6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D6B2F2A1E4EDB0B00F79560 /* CWUtilDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWUtilDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D513B451E4F112800E437F6 /* CWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWUtils.h; sourceTree = "<group>"; };
+		2D513B461E4F112800E437F6 /* CWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWUtils.m; sourceTree = "<group>"; };
+		2D6B2F2A1E4EDB0B00F79560 /* CWUtilsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CWUtilsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6B2F2E1E4EDB0B00F79560 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +79,8 @@
 		2D513B351E4EE0D100E437F6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2D513B451E4F112800E437F6 /* CWUtils.h */,
+				2D513B461E4F112800E437F6 /* CWUtils.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -99,7 +104,7 @@
 		2D6B2F2B1E4EDB0B00F79560 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D6B2F2A1E4EDB0B00F79560 /* CWUtilDemo.app */,
+				2D6B2F2A1E4EDB0B00F79560 /* CWUtilsDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,9 +141,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2D6B2F291E4EDB0B00F79560 /* CWUtilDemo */ = {
+		2D6B2F291E4EDB0B00F79560 /* CWUtilsDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D6B2F441E4EDB0B00F79560 /* Build configuration list for PBXNativeTarget "CWUtilDemo" */;
+			buildConfigurationList = 2D6B2F441E4EDB0B00F79560 /* Build configuration list for PBXNativeTarget "CWUtilsDemo" */;
 			buildPhases = (
 				2D6B2F261E4EDB0B00F79560 /* Sources */,
 				2D6B2F271E4EDB0B00F79560 /* Frameworks */,
@@ -148,9 +153,9 @@
 			);
 			dependencies = (
 			);
-			name = CWUtilDemo;
+			name = CWUtilsDemo;
 			productName = CWUtilDemo;
-			productReference = 2D6B2F2A1E4EDB0B00F79560 /* CWUtilDemo.app */;
+			productReference = 2D6B2F2A1E4EDB0B00F79560 /* CWUtilsDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2D6B2F251E4EDB0B00F79560 /* Build configuration list for PBXProject "CWUtilDemo" */;
+			buildConfigurationList = 2D6B2F251E4EDB0B00F79560 /* Build configuration list for PBXProject "CWUtilsDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -181,7 +186,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2D6B2F291E4EDB0B00F79560 /* CWUtilDemo */,
+				2D6B2F291E4EDB0B00F79560 /* CWUtilsDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -209,6 +214,7 @@
 				2D6B2F2F1E4EDB0B00F79560 /* main.m in Sources */,
 				2D513B2D1E4EE02200E437F6 /* CWBaseViewController.m in Sources */,
 				2D513B331E4EE0A900E437F6 /* AppDelegate.m in Sources */,
+				2D513B471E4F112800E437F6 /* CWUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2D6B2F251E4EDB0B00F79560 /* Build configuration list for PBXProject "CWUtilDemo" */ = {
+		2D6B2F251E4EDB0B00F79560 /* Build configuration list for PBXProject "CWUtilsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D6B2F421E4EDB0B00F79560 /* Debug */,
@@ -337,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D6B2F441E4EDB0B00F79560 /* Build configuration list for PBXNativeTarget "CWUtilDemo" */ = {
+		2D6B2F441E4EDB0B00F79560 /* Build configuration list for PBXNativeTarget "CWUtilsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D6B2F451E4EDB0B00F79560 /* Debug */,
